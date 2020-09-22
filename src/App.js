@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import "./App.css";
+import Todo from "./Todo";
 
 function App() {
+  const [inputText, setInputText] = useState("");
+  const [todo, setTodo] = useState([]);
+
+  const addTodo = (event) => {
+    event.preventDefault();
+    setTodo([inputText, ...todo]);
+    setInputText("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <h1>Todo App</h1>
+        <input
+          value={inputText}
+          onChange={(event) => setInputText(event.target.value)}
+        ></input>
+        <button disabled={!inputText} type="submit" onClick={addTodo}>
+          Add Todo
+        </button>
+      </form>
+      {todo.map((todo) => (
+        <Todo text={todo} key={Math.random().toString(36)} />
+      ))}
     </div>
   );
 }

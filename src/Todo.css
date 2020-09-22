@@ -1,0 +1,11 @@
+.todo__card {
+  margin: 0 auto;
+  height: 150px;
+  background-color: rgb(186, 186, 186);
+  border-radius: 15px;
+  width: 500px;
+}
+
+.todo__card > h1 {
+  padding: 15px 0 0 25px;
+}
